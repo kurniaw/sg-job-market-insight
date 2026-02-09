@@ -162,7 +162,7 @@ The dashboard will open in your browser at `http://localhost:8501`
 ## Troubleshooting
 
 **Error: "File not found" for SGJobData.csv**
-- Ensure the CSV file is in: `ntu-data-science-ai/lesson_1_6/SGJobData.csv`
+- Ensure the CSV file is in: `SGJobData.csv`
 - Check file path is relative to your working directory
 
 **Error: "ModuleNotFoundError" for pandas, streamlit, etc.**
