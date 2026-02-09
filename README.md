@@ -75,7 +75,7 @@ Filters work across all tabs for focused analysis.
 
 1. **Clone or download the project**
    ```bash
-   cd /path/to/project
+   cd /path/to/project/sg-market-insights
    ```
 
 2. **Install dependencies**
@@ -83,10 +83,24 @@ Filters work across all tabs for focused analysis.
    pip install -r requirements.txt
    ```
 
-3. **Ensure data file is in correct location**
-   ```
-   /ntu-data-science-ai/lesson_1_6/SGJobData.csv
-   ```
+3. **Prepare the data**
+
+This project now supports using a DuckDB database for faster loading of the ~1M row CSV. You have two options:
+
+- Quick (recommended): create a DuckDB file from the CSV so the dashboard loads faster:
+
+  ```bash
+  # from the project root (sg-market-insights)
+  python3 scripts/migrate_to_duckdb.py
+  ```
+
+  This will create `data/sg_jobs.duckdb` containing the table `sg_jobs`.
+
+- Fallback: place the raw CSV next to `app.py` (or run the project from the directory that contains `SGJobData.csv`):
+
+  ```text
+  SGJobData.csv
+  ```
 
 ### Running the Dashboard
 
@@ -94,7 +108,7 @@ Filters work across all tabs for focused analysis.
 streamlit run app.py
 ```
 
-The dashboard will open in your browser at `http://localhost:8501`
+The dashboard will open in your browser at `http://localhost:8501`.
 
 ## Files Overview
 
