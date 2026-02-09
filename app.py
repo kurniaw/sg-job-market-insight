@@ -21,6 +21,11 @@ st.set_page_config(page_title="SG Job Market Intelligence", layout="wide")
 # Load data
 @st.cache_resource
 def load_data():
+    # Prefer using DuckDB database if available
+    db_path = os.path.join("data", "sg_jobs.duckdb")
+    if os.path.exists(db_path):
+        return JobDataProcessor(db_path)
+    # Fallback to CSV if DuckDB not present
     csv_path = "SGJobData.csv"
     return JobDataProcessor(csv_path)
 

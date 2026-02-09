@@ -5,10 +5,37 @@ from collections import Counter
 from datetime import datetime
 import re
 
+# Optional duckdb support
+try:
+    import duckdb
+except Exception:
+    duckdb = None
+
 class JobDataProcessor:
-    def __init__(self, csv_path):
-        """Initialize processor and load data"""
-        self.df = pd.read_csv(csv_path)
+    def __init__(self, data_source):
+        """Initialize processor and load data.
+
+        data_source can be:
+        - a path to a CSV file (string)
+        - a path to a DuckDB file (string ending with .duckdb) containing table `sg_jobs`
+        - a pandas DataFrame
+        """
+        # If a DataFrame is provided, use it directly
+        if isinstance(data_source, pd.DataFrame):
+            self.df = data_source.copy()
+        # If duckdb file provided, read from table `sg_jobs` using duckdb
+        elif isinstance(data_source, str) and data_source.lower().endswith('.duckdb'):
+            if duckdb is None:
+                raise ImportError('duckdb package is required to read from a .duckdb file')
+            conn = duckdb.connect(database=data_source, read_only=False)
+            try:
+                # Read entire table into a pandas DataFrame
+                self.df = conn.execute('SELECT * FROM sg_jobs').fetchdf()
+            finally:
+                conn.close()
+        else:
+            # Assume it's a CSV path
+            self.df = pd.read_csv(data_source)
         self.clean_data()
         self.extract_categories()
         self.calculate_metrics()
