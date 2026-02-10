@@ -1,0 +1,13 @@
+name: sg_jobs
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - streamlit
+  - pandas
+  - plotly
+  - numpy
+  - duckdb
+  - pip:
+      - streamlit
+      - plotly

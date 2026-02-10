@@ -69,7 +69,7 @@ Filters work across all tabs for focused analysis.
 
 ### Prerequisites
 - Python 3.8+
-- pip (Python package manager)
+- Miniconda
 
 ### Installation Steps
 
@@ -80,7 +80,7 @@ Filters work across all tabs for focused analysis.
 
 2. **Install dependencies**
    ```bash
-   pip install -r requirements.txt
+   conda env create -f environment.yml
    ```
 
 3. **Prepare the data**
