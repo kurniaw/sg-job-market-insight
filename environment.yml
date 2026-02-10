@@ -4,6 +4,7 @@ channels:
   - defaults
 dependencies:
   - streamlit
+  - pip
   - pandas
   - plotly
   - numpy
