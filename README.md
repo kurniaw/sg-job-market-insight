@@ -110,6 +110,11 @@ streamlit run app.py
 
 The dashboard will open in your browser at `http://localhost:8501`.
 
+### Streamlit Cloud
+```
+https://sg-job-market-insight-napltmpzajpd3fzjewntna.streamlit.app
+```
+
 ## Files Overview
 
 - **app.py** - Main Streamlit dashboard application with 5 tabs
